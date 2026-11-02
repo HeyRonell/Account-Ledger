@@ -9,7 +9,8 @@ public class Main {
     public static void main(String[] args) {
         Ledger ledger = new Ledger(); // creating a new Ledger object named ledger.
         MenuScreen ui = new MenuScreen(read, ledger); // calling on the scanner and ledger objects as params
-        ui.displayMenu();
+
+        ui.displayMenu(); //Bringing up the menu screen method.
 
         read.close();
     }

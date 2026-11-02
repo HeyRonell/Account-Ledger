@@ -13,20 +13,19 @@ public class MenuScreen {
     }
 
     public void displayMenu() {
-
         String choice = "";
 
         while (!choice.equalsIgnoreCase("X")) {
 
 
-            System.out.println("Welcome to GameVault!");
+            System.out.println("\nWelcome to GameVault!");
             System.out.println("P. Make a payment");
             System.out.println("D. Make a deposit");
-            System.out.println("View the ledger");
+            System.out.println("L. View the ledger");
             System.out.println("X. Exit me out");
 
             System.out.println("What would you like to do?");
-            choice = Main.read.nextLine();
+            choice = read.nextLine();
 
 
             switch (choice.toUpperCase()) { //This will ensure the input outputs as uppercase.
@@ -35,11 +34,11 @@ public class MenuScreen {
                     break;
 
                 case "D":
-                    depositHandle();
+                    depositHandle(); // handling deposits in the method below.
                     break;
 
                 case "L":
-                    System.out.println("Taking you to the ledger now..."); // this is temp
+                    ledger.readTransactionsFile(); // pulling the ledger object information.
                     break;
 
                 case "X":
@@ -48,7 +47,7 @@ public class MenuScreen {
 
                 default:
                     System.out.println("Please revise your input and try again!");
-                    break;
+                    break; // executes if the input is an invalid call.
 
 
             }
@@ -58,11 +57,19 @@ public class MenuScreen {
     }
 
     private void depositHandle() {
+        System.out.println("What is the description for the product?");
+        String description = read.nextLine();
+
+        System.out.println("Who is the vendor of the product?");
+        String vendor = read.nextLine();
+
         System.out.println("How much would you like to deposit?");
 
         try {
-            double amount = Double.parseDouble(read.nextLine());
-            ledger.addDeposit(amount);
+            double amount = Double.parseDouble(
+                    read.nextLine());
+
+            ledger.addDeposit(description, vendor, amount);
         } catch (NumberFormatException e) {
             System.out.println("This number is invalid. Please try again!");
         }
