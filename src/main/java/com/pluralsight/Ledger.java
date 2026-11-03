@@ -1,5 +1,6 @@
 package com.pluralsight;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.time.LocalDate;
@@ -50,20 +51,30 @@ public class Ledger {
             // starting off the while loop with the separation of parts.
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split("\\|");
+
                 LocalDate date1 = LocalDate.parse(parts[0]);
                 LocalTime time1 = LocalTime.parse(parts[1]);
+
                 String description1 = parts[2];
                 String vendor1 = parts[3];
                 double amount1 = Double.parseDouble(parts[4]);
 
-                Transactions transaction = new Transactions(description1, vendor1, amount1);
+//                Combining date and time
+                LocalDateTime transactionDateTime = LocalDateTime.of(date1, time1);
+
+//                Creating a new object to keep its original timestamp.
+                Transactions transaction = new Transactions(
+                        transactionDateTime, description1, vendor1, amount1
+                );
+
+               // Transactions transaction1 = new Transactions(description1, vendor1, amount1);
                 this.transactions.add(transaction);
 
                 System.out.println("---------------------------");
 
                 System.out.println("Date: " + date1);
                 System.out.println("Time: " + time1);
-                System.out.println("Description" + description1);
+                System.out.println("Description: " + description1);
                 System.out.println("Vendor: " + vendor1);
                 System.out.println("Amount: " + amount1);
 

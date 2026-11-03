@@ -24,6 +24,13 @@ public class Transactions {
         amount = 0.0;
     }
 
+    public Transactions(LocalDateTime dateTime, String description, String vendor, double amount) {
+        this.dateTime = dateTime;
+        this.description = description;
+        this.vendor = vendor;
+        this.amount = amount;
+    }
+
     public String getDescription() {
         return description;
     }
