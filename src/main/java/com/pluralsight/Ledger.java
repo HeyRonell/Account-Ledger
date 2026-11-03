@@ -24,7 +24,7 @@ public class Ledger {
             if (saved) {
                 transactions.add(deposit); // adding the current transaction call to deposits.
                 totalDepositAmount += amount; // we're updating the amount as we go.
-                System.out.println("Deposit accepted: $.2f%n" + amount);
+                System.out.printf("Deposit accepted: $%.2f%n", amount);
                 System.out.printf("We're currently at $%.2f in total", totalDepositAmount);
             } else {
                 System.out.println("we were unable to save that transaction on file.");
