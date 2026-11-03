@@ -124,4 +124,31 @@ public class MenuScreen {
             }
         }
     }
+    private void reportsMenu() {
+        String choice = "";
+
+        while (!choice.equalsIgnoreCase("H")) {
+            System.out.println("\n --- Reports --- ");
+            System.out.println("1. Month to Date");
+            System.out.println("2. Previous Month");
+            System.out.println("3. Year to Date");
+            System.out.println("4. Previous Year");
+            System.out.println("5. Search by Vendor");
+            System.out.println("H. Back to Ledger Screen");
+            System.out.println("What would you like to see?");
+
+            choice = read.nextLine();
+
+            switch (choice.toUpperCase()) {
+                case "1" -> System.out.println("Temp Writing");
+                case "2" -> System.out.println("Temp Writing");
+                case "3" -> System.out.println("Temp Writing");
+                case "4" -> System.out.println("Temp Writing");
+                case "5" -> System.out.println("Temp Writing");
+                case "H" -> {}
+                default -> System.out.println("Please type something valid!");
+            }
+
+        }
+    }
 }
