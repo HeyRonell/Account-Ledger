@@ -30,7 +30,7 @@ public class MenuScreen {
 
             switch (choice.toUpperCase()) { //This will ensure the input outputs as uppercase.
                 case "P":
-                    System.out.println("Taking you to the payment..."); // this is temp.
+                    paymentHandle(); // This will pull the payment method from below.
                     break;
 
                 case "D":
@@ -55,7 +55,7 @@ public class MenuScreen {
         }
 
     }
-
+//      Methods to handle deposits/payments from the user.
     private void depositHandle() {
         System.out.println("What is the description for the product?");
         String description = read.nextLine();
@@ -72,6 +72,23 @@ public class MenuScreen {
             ledger.addDeposit(description, vendor, amount);
         } catch (NumberFormatException e) {
             System.out.println("This number is invalid. Please try again!");
+        }
+    }
+    private void paymentHandle() {
+        System.out.println("Describe the product you are purchasing: ");
+        String description = read.nextLine();
+
+        System.out.println("Who are you purchasing this product from?");
+        String vendor = read.nextLine();
+
+        System.out.println("How much is the payment for this item?");
+
+        try {
+            double amount = Double.parseDouble(read.nextLine());
+
+            ledger.addPayment(description, vendor, amount);
+        } catch (NumberFormatException e) {
+            System.out.println("This number is not valid. Please try again!");
         }
     }
 }

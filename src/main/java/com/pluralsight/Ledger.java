@@ -37,18 +37,21 @@ public class Ledger {
 
     public void addPayment(String description, String vendor, double amount) {
         if (amount > 0 && Double.isFinite(amount)) {
+            double paymentAmount = -amount;
             Transactions payment = new Transactions(description, vendor, amount);
 
             boolean saved = savingTransactions(payment);
 
             if (saved) {
-                transactions
+                transactions.add(payment);
 
+                System.out.printf("Payment recorded: $%.2f%n", paymentAmount);
+            } else {
+                System.out.println("Payment was not processed properly.");
             }
+        } else {
+            System.out.println("Invalid payment amount.");
         }
-
-
-
 
     }
 
