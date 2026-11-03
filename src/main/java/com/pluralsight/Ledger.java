@@ -1,5 +1,6 @@
 package com.pluralsight;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.io.*;
@@ -43,9 +44,33 @@ public class Ledger {
 
         try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/Transactions.csv"))) {
 
-            String line;
+            reader.readLine(); // This is to skip the header line and continue with the rest
+            String line; // having a default value for the line.
 
+            // starting off the while loop with the separation of parts.
             while ((line = reader.readLine()) != null) {
+                String[] parts = line.split("\\|");
+                LocalDate date1 = LocalDate.parse(parts[0]);
+                LocalTime time1 = LocalTime.parse(parts[1]);
+                String description1 = parts[2];
+                String vendor1 = parts[3];
+                double amount1 = Double.parseDouble(parts[4]);
+
+                Transactions transaction = new Transactions(description1, vendor1, amount1);
+                this.transactions.add(transaction);
+
+                System.out.println("---------------------------");
+
+                System.out.println("Date: " + date1);
+                System.out.println("Time: " + time1);
+                System.out.println("Description" + description1);
+                System.out.println("Vendor: " + vendor1);
+                System.out.println("Amount: " + amount1);
+
+                System.out.println("---------------------------");
+
+                System.out.println("Transactions loaded: " + transactions.size());
+
                 System.out.println(line);
             }
         } catch (IOException e){
