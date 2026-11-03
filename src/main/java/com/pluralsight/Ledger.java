@@ -54,6 +54,15 @@ public class Ledger {
         }
 
     }
+    public double calculateBalance() {
+        double balance = 0.0;
+
+        for (Transactions transaction : transactions) {
+            balance += transaction.getAmount();
+
+        }
+        return balance;
+    }
 
     // future development of the transactions list.
     public void displayTransactions() {
@@ -94,6 +103,12 @@ public class Ledger {
                         transaction.getAmount());
             }
         }
+    }
+
+    public void displayBalance() {
+        double balance = calculateBalance();
+
+        System.out.printf("Current balance: $%.2f%n", balance);
     }
 
     public void readTransactionsFile() {

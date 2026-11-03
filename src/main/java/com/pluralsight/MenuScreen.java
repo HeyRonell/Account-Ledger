@@ -13,6 +13,7 @@ public class MenuScreen {
         this.ledger = ledger; // This is also getting passed from main to here
     }
 
+//    Our main menu screen display
     public void displayMenu() {
         String choice = "";
 
@@ -56,6 +57,7 @@ public class MenuScreen {
         }
 
     }
+
 //      Methods to handle deposits/payments from the user.
     private void depositHandle() {
         System.out.println("What is the description for the product?");
@@ -75,6 +77,8 @@ public class MenuScreen {
             System.out.println("This number is invalid. Please try again!");
         }
     }
+
+//    Handling user inputs for payments
     private void paymentHandle() {
         System.out.println("Describe the product you are purchasing: ");
         String description = read.nextLine();
@@ -92,6 +96,8 @@ public class MenuScreen {
             System.out.println("This number is not valid. Please try again!");
         }
     }
+
+//    Creating a submenu for the Ledger class to separate the transactions
     private void ledgerMenu() {
         String choice = "";
 
@@ -100,6 +106,7 @@ public class MenuScreen {
             System.out.println("A. All transactions");
             System.out.println("D. Deposits");
             System.out.println("P. Payments");
+            System.out.println("B. Balance");
             System.out.println("R. Reports");
             System.out.println("H. Home");
             System.out.println("What would you like to do?");
@@ -110,8 +117,9 @@ public class MenuScreen {
                 case "A" -> ledger.displayTransactions();
                 case "D" -> ledger.displayDeposits();
                 case "P" -> ledger.displayPayments();
+                case "B" -> ledger.displayBalance();
                 case "R" -> System.out.println("Reports");
-                case "H" -> System.out.println("Home");
+                case "H" -> {}
                 default -> System.out.println("Invalid, please try again!");
             }
         }
