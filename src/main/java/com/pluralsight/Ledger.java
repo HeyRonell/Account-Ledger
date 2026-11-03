@@ -2,6 +2,7 @@ package com.pluralsight;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.io.*;
@@ -19,9 +20,10 @@ public class Ledger {
             Transactions deposit = new Transactions(description, vendor, amount);
 
             transactions.add(deposit); // adding the current transaction call to deposits.
+            savingTransactions(deposit);
             totalDepositAmount += amount; // we're updating the amount as we go.
 
-            System.out.println("Deposit accepted: $" + amount);
+            System.out.println("Deposit accepted: $.2f%n" + amount);
             System.out.printf("We're currently at $%.2f in total", totalDepositAmount);
         } else {
             System.out.println("This deposit amount is invalid.");
@@ -33,7 +35,7 @@ public class Ledger {
 
         System.out.println("Ledger Information");
 //      this will show all the transactions within the csv file.
-        for (Transactions transactions : transactions) { // for Transaction class, transactions object in transactions objects
+        for (Transactions transactions : transactions) { // in the array list Transactions, go through each transactions object one at a time.
             System.out.printf("%s | %s | %s | $%.2f%n", transactions.getFormattedDateTime(),
                     transactions.getDescription(),
                     transactions.getVendor(),
@@ -86,6 +88,28 @@ public class Ledger {
             }
         } catch (IOException e){
             System.out.println("Is there something here..?");
+        }
+    }
+
+    public void savingTransactions(Transactions transactions) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/Transactions.csv", true))) {
+//            getting the date set up
+            String date = transactions.getDateTime().toLocalDate().toString();
+//            getting the time set up
+            String time = transactions.getDateTime().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+//            putting it together
+            writer.write(date + "|" +
+                    time + "|" +
+                    transactions.getDescription() + "|" +
+                    transactions.getVendor() + "|" +
+                    transactions.getAmount());
+
+            writer.newLine(); // this will save our new transaction above with the format that we laid out.
+
+            System.out.println("Save successful!");
+
+        } catch (IOException e) {
+            System.out.println("There was an error with the file.");
         }
     }
 }

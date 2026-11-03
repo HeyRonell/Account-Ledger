@@ -38,7 +38,7 @@ public class MenuScreen {
                     break;
 
                 case "L":
-                    ledger.readTransactionsFile(); // pulling the ledger object information.
+                    ledger.displayTransactions(); // pulling the ledger object information.
                     break;
 
                 case "X":

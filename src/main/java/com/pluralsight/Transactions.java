@@ -23,7 +23,7 @@ public class Transactions {
         vendor = "";
         amount = 0.0;
     }
-
+//  this constructor is used for older items on the list.
     public Transactions(LocalDateTime dateTime, String description, String vendor, double amount) {
         this.dateTime = dateTime;
         this.description = description;
