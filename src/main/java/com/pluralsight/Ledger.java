@@ -11,20 +11,25 @@ public class Ledger {
 
     private ArrayList<Transactions> transactions = new ArrayList<>(); // creating this to handle transaction history
 
-//    This is so the system still remembers all the transactions.
+//    This is so the system still remembers all the deposits made.
     private double totalDepositAmount = 0;
 
-    public void addDeposit(String description, String vendor, double amount) { //receiving information from the creation of the object
+    public void addDeposit(String description, String vendor, double amount) { // adds to the array list if the csv file saves correctly.
         if (amount > 0 && Double.isFinite(amount)) {
 
             Transactions deposit = new Transactions(description, vendor, amount);
 
-            transactions.add(deposit); // adding the current transaction call to deposits.
-            savingTransactions(deposit);
-            totalDepositAmount += amount; // we're updating the amount as we go.
+            boolean saved = savingTransactions(deposit);
 
-            System.out.println("Deposit accepted: $.2f%n" + amount);
-            System.out.printf("We're currently at $%.2f in total", totalDepositAmount);
+            if (saved) {
+                transactions.add(deposit); // adding the current transaction call to deposits.
+                totalDepositAmount += amount; // we're updating the amount as we go.
+                System.out.println("Deposit accepted: $.2f%n" + amount);
+                System.out.printf("We're currently at $%.2f in total", totalDepositAmount);
+            } else {
+                System.out.println("we were unable to save that transaction on file.");
+            }
+
         } else {
             System.out.println("This deposit amount is invalid.");
         }
@@ -91,7 +96,8 @@ public class Ledger {
         }
     }
 
-    public void savingTransactions(Transactions transactions) {
+    // calling bool to confirm with addDeposit method that the transaction saved to the csv as well.
+    public boolean savingTransactions(Transactions transactions) { // csv file saves
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/Transactions.csv", true))) {
 //            getting the date set up
             String date = transactions.getDateTime().toLocalDate().toString();
@@ -107,9 +113,11 @@ public class Ledger {
             writer.newLine(); // this will save our new transaction above with the format that we laid out.
 
             System.out.println("Save successful!");
+            return true;
 
         } catch (IOException e) {
             System.out.println("There was an error with the file.");
         }
+        return false;
     }
 }
