@@ -35,6 +35,23 @@ public class Ledger {
         }
     }
 
+    public void addPayment(String description, String vendor, double amount) {
+        if (amount > 0 && Double.isFinite(amount)) {
+            Transactions payment = new Transactions(description, vendor, amount);
+
+            boolean saved = savingTransactions(payment);
+
+            if (saved) {
+                transactions
+
+            }
+        }
+
+
+
+
+    }
+
     // future development of the transactions list.
     public void displayTransactions() {
 
