@@ -1,5 +1,6 @@
 package com.pluralsight;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class MenuScreen {
@@ -38,7 +39,7 @@ public class MenuScreen {
                     break;
 
                 case "L":
-                    ledger.displayTransactions(); // pulling the ledger object information.
+                    ledgerMenu(); // pulling the ledger object information.
                     break;
 
                 case "X":
@@ -89,6 +90,30 @@ public class MenuScreen {
             ledger.addPayment(description, vendor, amount);
         } catch (NumberFormatException e) {
             System.out.println("This number is not valid. Please try again!");
+        }
+    }
+    private void ledgerMenu() {
+        String choice = "";
+
+        while (!choice.equalsIgnoreCase("H")) {
+            System.out.println("\n--- Ledger Menu ---");
+            System.out.println("A. All transactions");
+            System.out.println("D. Deposits");
+            System.out.println("P. Payments");
+            System.out.println("R. Reports");
+            System.out.println("H. Home");
+            System.out.println("What would you like to do?");
+
+            choice = read.nextLine();
+
+            switch (choice.toUpperCase()) {
+                case "A" -> ledger.displayTransactions();
+                case "D" -> ledger.displayDeposits();
+                case "P" -> ledger.displayPayments();
+                case "R" -> System.out.println("Reports");
+                case "H" -> System.out.println("Home");
+                default -> System.out.println("Invalid, please try again!");
+            }
         }
     }
 }

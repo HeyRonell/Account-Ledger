@@ -38,7 +38,7 @@ public class Ledger {
     public void addPayment(String description, String vendor, double amount) {
         if (amount > 0 && Double.isFinite(amount)) {
             double paymentAmount = -amount;
-            Transactions payment = new Transactions(description, vendor, amount);
+            Transactions payment = new Transactions(description, vendor, paymentAmount);
 
             boolean saved = savingTransactions(payment);
 
@@ -65,6 +65,34 @@ public class Ledger {
                     transactions.getDescription(),
                     transactions.getVendor(),
                     transactions.getAmount());
+        }
+    }
+    public void displayDeposits() {
+        System.out.println("\n ---- Deposits ----");
+
+        for (Transactions transaction : transactions) {
+
+            if (transaction.getAmount() > 0) {
+                System.out.printf("%s %s %s $%.2f%n",
+                        transaction.getFormattedDateTime(),
+                        transaction.getDescription(),
+                        transaction.getVendor(),
+                        transaction.getAmount());
+            }
+        }
+    }
+
+    public void displayPayments() {
+        System.out.println("\n---- Payments ----");
+
+        for (Transactions transaction : transactions) {
+            if (transaction.getAmount() < 0) {
+                System.out.printf("%s %s %s $%.2f%n",
+                        transaction.getFormattedDateTime(),
+                        transaction.getDescription(),
+                        transaction.getVendor(),
+                        transaction.getAmount());
+            }
         }
     }
 
