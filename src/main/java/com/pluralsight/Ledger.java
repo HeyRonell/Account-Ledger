@@ -206,6 +206,8 @@ public class Ledger {
     }
     public void displayTransactionsByVendor(String searchVendor) {
 
+        boolean found = false; // initializing as false. Will update itself if the search finds a match.
+
         System.out.println("\n--- Vendor Search ---");
 //        Again checking each object within the list
         for (Transactions transaction : transactions) {
@@ -217,7 +219,14 @@ public class Ledger {
                         transaction.getDescription(),
                         transaction.getVendor(),
                         transaction.getAmount());
+
+                found = true;
             }
+
+        }
+
+        if (!found) { // letting the user know there are no current items pertaining to their search.
+            System.out.printf("No transactions found for %s", searchVendor);
         }
 
     }
