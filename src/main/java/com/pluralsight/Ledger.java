@@ -134,6 +134,31 @@ public class Ledger {
         }
     }
 
+    public void displayPreviousMonth() {
+        LocalDate today = LocalDate.now();
+
+        // .minusMonths allows us to subtract by a month, and the DayOfMonth sets the start date to the first day of the month.
+        LocalDate firstDayOfPreviousMonth = today.minusMonths(1).withDayOfMonth(1);
+        // this will identify the day pertaining to the month prior to the current.
+        LocalDate lastDayOfPreviousMonth = today.withDayOfMonth(1).minusDays(1);
+
+        System.out.println("\n--- Previous Month Report ---");
+
+        for (Transactions transaction : transactions) {
+
+            LocalDate transactionDate = transaction.getDateTime().toLocalDate();
+//            We're checking to see if the date is after the first day of last month and before last day of last month.
+            if (!transactionDate.isBefore(firstDayOfPreviousMonth) && !transactionDate.isAfter(lastDayOfPreviousMonth)) {
+
+                System.out.printf("%s | %s | %s | $%.2f%n",
+                        transaction.getFormattedDateTime(),
+                        transaction.getDescription(),
+                        transaction.getVendor(),
+                        transaction.getAmount());
+            }
+        }
+    }
+
     public void readTransactionsFile() {
 
         try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/Transactions.csv"))) {

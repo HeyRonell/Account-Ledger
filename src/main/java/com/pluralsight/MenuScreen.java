@@ -141,7 +141,7 @@ public class MenuScreen {
 
             switch (choice.toUpperCase()) {
                 case "1" -> ledger.displayMonthToDate();
-                case "2" -> System.out.println("Temp Writing");
+                case "2" -> ledger.displayPreviousMonth();
                 case "3" -> System.out.println("Temp Writing");
                 case "4" -> System.out.println("Temp Writing");
                 case "5" -> System.out.println("Temp Writing");
