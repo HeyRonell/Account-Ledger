@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.io.*;
+import java.util.Locale;
 
 public class Ledger {
 
@@ -211,8 +212,10 @@ public class Ledger {
         System.out.println("\n--- Vendor Search ---");
 //        Again checking each object within the list
         for (Transactions transaction : transactions) {
-//            if the vendor matches the users search, it will print out those.
-            if (transaction.getVendor().equalsIgnoreCase(searchVendor)) {
+//            If any vendor contains what the user inputs, it will display those transactions in lowercase.
+//            We're calling to get the vendor and the users input in full lowercase for an easier match
+//            since this is case-sensitive.
+            if (transaction.getVendor().toLowerCase().contains(searchVendor.toLowerCase())) {
 
                 System.out.printf("%s | %s | %s | $%.2f%n",
                         transaction.getFormattedDateTime(),
