@@ -134,7 +134,7 @@ public class MenuScreen {
             System.out.println("3. Year to Date");
             System.out.println("4. Previous Year");
             System.out.println("5. Search by Vendor");
-            System.out.println("H. Back to Ledger Screen");
+            System.out.println("0. Back to Ledger Screen");
             System.out.println("What would you like to see?");
 
             choice = read.nextLine();
@@ -145,7 +145,7 @@ public class MenuScreen {
                 case "3" -> ledger.displayYearToDate();
                 case "4" -> ledger.displayPreviousYear();
                 case "5" -> searchByVendor();
-                case "H" -> {}
+                case "0" -> {}
                 default -> System.out.println("Please type something valid!");
             }
 

@@ -72,7 +72,7 @@ public class Ledger {
         System.out.println("Ledger Information");
 //      this will show all the transactions within the csv file.
         for (int i = transaction.size() - 1; i >= 0; i--) { // in the array list Transactions, go through each transactions object one at a time.
-            Transactions transaction = transactions.get(i);
+            Transactions transaction = this.transaction.get(i);
 
             System.out.printf("%s | %s | %s | $%.2f%n",
                     transaction.getFormattedDateTime(),
@@ -277,7 +277,7 @@ public class Ledger {
 
                 System.out.println("---------------------------");
 
-                System.out.println("Transactions loaded: " + transaction.size());
+                System.out.println("Transactions loaded: " + this.transaction.size());
 
                 System.out.println(line);
             }
