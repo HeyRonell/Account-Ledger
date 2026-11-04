@@ -14,6 +14,7 @@ public class Ledger {
 
 //    This is so the system still remembers all the deposits made.
     private double totalDepositAmount = 0;
+    private String inputFile = "src/main/resources/Transactions.csv";
 
     public void addDeposit(String description, String vendor, double amount) { // adds to the array list if the csv file saves correctly.
         if (amount > 0 && Double.isFinite(amount)) {
@@ -236,7 +237,7 @@ public class Ledger {
 
     public void readTransactionsFile() {
 
-        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/Transactions.csv"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(inputFile))) {
 
             reader.readLine(); // This is to skip the header line and continue with the rest
             String line; // having a default value for the line.
@@ -284,7 +285,7 @@ public class Ledger {
 
     // calling bool to confirm with addDeposit method that the transaction saved to the csv as well.
     public boolean savingTransactions(Transactions transactions) { // csv file saves
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/Transactions.csv", true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(inputFile, true))) {
 //            getting the date set up
             String date = transactions.getDateTime().toLocalDate().toString();
 //            getting the time set up
