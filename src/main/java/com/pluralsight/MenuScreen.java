@@ -151,6 +151,8 @@ public class MenuScreen {
 
         }
     }
+
+    // This will allow the user to search for vendors. This ties in with our displayTransactionsByVendor in Ledgar.
     public void searchByVendor() {
         System.out.println("Enter the desired Vendor name: ");
         String searchVendor = read.nextLine().trim();
