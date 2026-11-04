@@ -159,6 +159,69 @@ public class Ledger {
         }
     }
 
+    public void displayYearToDate() {
+        LocalDate today = LocalDate.now();
+
+//        Finding the first day of the current year.
+        LocalDate firstDayOfYear = today.withDayOfYear(1);
+
+        System.out.println("\n--- Yearly Report ---");
+
+        for (Transactions transaction : transactions) {
+            LocalDate transactionDate = transaction.getDateTime().toLocalDate();
+//        This is checking from january 1st to the current day. Not whole year.
+            if (!transactionDate.isBefore(firstDayOfYear) && !transactionDate.isAfter(today)) {
+
+                System.out.printf("%s | %s | %s | $%.2f%n",
+                        transaction.getFormattedDateTime(),
+                        transaction.getDescription(),
+                        transaction.getVendor(),
+                        transaction.getAmount());
+            }
+        }
+    }
+    public void displayPreviousYear() {
+        LocalDate today = LocalDate.now(); // grabbing the date for today
+
+//        subtracting a year and locating the first day of the year.
+        LocalDate firstDayOfPreviousYear = today.minusYears(1).withDayOfYear(1);
+
+//        January first of this year - 1 to get December 31st of the previous year.
+        LocalDate lastDayOfPreviousYear = today.withDayOfYear(1).minusDays(1);
+
+        System.out.println("\n --- Previous Yearly Report ---");
+
+        for (Transactions transaction : transactions) {
+
+            LocalDate transactionDate = transaction.getDateTime().toLocalDate();
+
+            if (!transactionDate.isBefore(firstDayOfPreviousYear) && !transactionDate.isAfter(lastDayOfPreviousYear)) {
+                System.out.printf("%s | %s | %s | $%.2f%n",
+                        transaction.getFormattedDateTime(),
+                        transaction.getDescription(),
+                        transaction.getVendor(),
+                        transaction.getAmount());
+            }
+        }
+    }
+    public void displayTransactionsByVendor(String searchVendor) {
+
+        System.out.println("\n--- Vendor Search ---");
+//        Again checking each object within the list
+        for (Transactions transaction : transactions) {
+//            if the vendor matches the users search, it will print out those.
+            if (transaction.getVendor().equalsIgnoreCase(searchVendor)) {
+
+                System.out.printf("%s | %s | %s | $%.2f%n",
+                        transaction.getFormattedDateTime(),
+                        transaction.getDescription(),
+                        transaction.getVendor(),
+                        transaction.getAmount());
+            }
+        }
+
+    }
+
     public void readTransactionsFile() {
 
         try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/Transactions.csv"))) {

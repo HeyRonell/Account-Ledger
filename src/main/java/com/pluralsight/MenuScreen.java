@@ -142,13 +142,24 @@ public class MenuScreen {
             switch (choice.toUpperCase()) {
                 case "1" -> ledger.displayMonthToDate();
                 case "2" -> ledger.displayPreviousMonth();
-                case "3" -> System.out.println("Temp Writing");
-                case "4" -> System.out.println("Temp Writing");
-                case "5" -> System.out.println("Temp Writing");
+                case "3" -> ledger.displayYearToDate();
+                case "4" -> ledger.displayPreviousYear();
+                case "5" -> searchByVendor();
                 case "H" -> {}
                 default -> System.out.println("Please type something valid!");
             }
 
         }
+    }
+    public void searchByVendor() {
+        System.out.println("Enter the desired Vendor name: ");
+        String searchVendor = read.nextLine().trim();
+
+        if (searchVendor.isEmpty()) {
+            System.out.println("Please enter a vendor name.");
+            return;
+        }
+
+        ledger.displayTransactionsByVendor(searchVendor);
     }
 }
