@@ -127,14 +127,14 @@ public class MenuScreen {
     private void reportsMenu() {
         String choice = "";
 
-        while (!choice.equalsIgnoreCase("H")) {
+        while (!choice.equalsIgnoreCase("0")) {
             System.out.println("\n --- Reports --- ");
             System.out.println("1. Month to Date");
             System.out.println("2. Previous Month");
             System.out.println("3. Year to Date");
             System.out.println("4. Previous Year");
             System.out.println("5. Search by Vendor");
-            System.out.println("H. Back to Ledger Screen");
+            System.out.println("0. Back to Ledger Screen");
             System.out.println("What would you like to see?");
 
             choice = read.nextLine();
@@ -145,12 +145,14 @@ public class MenuScreen {
                 case "3" -> ledger.displayYearToDate();
                 case "4" -> ledger.displayPreviousYear();
                 case "5" -> searchByVendor();
-                case "H" -> {}
+                case "0" -> {}
                 default -> System.out.println("Please type something valid!");
             }
 
         }
     }
+
+    // This will allow the user to search for vendors. This ties in with our displayTransactionsByVendor in Ledgar.
     public void searchByVendor() {
         System.out.println("Enter the desired Vendor name: ");
         String searchVendor = read.nextLine().trim();
