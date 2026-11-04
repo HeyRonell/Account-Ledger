@@ -127,7 +127,7 @@ public class MenuScreen {
     private void reportsMenu() {
         String choice = "";
 
-        while (!choice.equalsIgnoreCase("H")) {
+        while (!choice.equalsIgnoreCase("0")) {
             System.out.println("\n --- Reports --- ");
             System.out.println("1. Month to Date");
             System.out.println("2. Previous Month");
