@@ -118,7 +118,7 @@ public class MenuScreen {
                 case "D" -> ledger.displayDeposits();
                 case "P" -> ledger.displayPayments();
                 case "B" -> ledger.displayBalance();
-                case "R" -> System.out.println("Reports");
+                case "R" -> reportsMenu();
                 case "H" -> {}
                 default -> System.out.println("Invalid, please try again!");
             }
@@ -140,7 +140,7 @@ public class MenuScreen {
             choice = read.nextLine();
 
             switch (choice.toUpperCase()) {
-                case "1" -> System.out.println("Temp Writing");
+                case "1" -> ledger.displayMonthToDate();
                 case "2" -> System.out.println("Temp Writing");
                 case "3" -> System.out.println("Temp Writing");
                 case "4" -> System.out.println("Temp Writing");

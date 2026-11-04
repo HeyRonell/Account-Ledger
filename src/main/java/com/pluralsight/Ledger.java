@@ -64,7 +64,7 @@ public class Ledger {
         return balance;
     }
 
-    // future development of the transactions list.
+    // Displays for Ledger submenu
     public void displayTransactions() {
 
         System.out.println("Ledger Information");
@@ -109,6 +109,29 @@ public class Ledger {
         double balance = calculateBalance();
 
         System.out.printf("Current balance: $%.2f%n", balance);
+    }
+
+//    Displays for reports
+    public void displayMonthToDate() {
+        LocalDate today = LocalDate.now(); // todays date.
+        LocalDate firstDay = today.withDayOfMonth(1); // determines if the day is on or after the first day of the month
+
+        System.out.println("\n ---- Month To Date ----");
+
+        for (Transactions transaction : transactions) {
+            LocalDate transactionDate = transaction.getDateTime().toLocalDate();
+
+            // is the date on or after the first day and before the current day.
+            if (!transactionDate.isBefore(firstDay) && !transactionDate.isAfter(today)) {
+
+                System.out.printf("%s | %s | %s | $%.2f%n",
+                        transaction.getFormattedDateTime(),
+                        transaction.getDescription(),
+                        transaction.getVendor(),
+                        transaction.getAmount());
+
+            }
+        }
     }
 
     public void readTransactionsFile() {
