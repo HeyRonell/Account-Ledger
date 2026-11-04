@@ -10,7 +10,7 @@ import java.util.Locale;
 
 public class Ledger {
 
-    private ArrayList<Transactions> transactions = new ArrayList<>(); // creating this to handle transaction history
+    private ArrayList<Transactions> transaction = new ArrayList<>(); // creating this to handle transaction history
 
 //    This is so the system still remembers all the deposits made.
     private double totalDepositAmount = 0;
@@ -24,7 +24,7 @@ public class Ledger {
             boolean saved = savingTransactions(deposit);
 
             if (saved) {
-                transactions.add(deposit); // adding the current transaction call to deposits.
+                transaction.add(deposit); // adding the current transaction call to deposits.
                 totalDepositAmount += amount; // we're updating the amount as we go.
                 System.out.printf("Deposit accepted: $%.2f%n", amount);
                 System.out.printf("We're currently at $%.2f in total", totalDepositAmount);
@@ -45,7 +45,7 @@ public class Ledger {
             boolean saved = savingTransactions(payment);
 
             if (saved) {
-                transactions.add(payment);
+                transaction.add(payment);
 
                 System.out.printf("Payment recorded: $%.2f%n", paymentAmount);
             } else {
@@ -59,7 +59,7 @@ public class Ledger {
     public double calculateBalance() {
         double balance = 0.0;
 
-        for (Transactions transaction : transactions) {
+        for (Transactions transaction : transaction) {
             balance += transaction.getAmount();
 
         }
@@ -71,17 +71,20 @@ public class Ledger {
 
         System.out.println("Ledger Information");
 //      this will show all the transactions within the csv file.
-        for (Transactions transactions : transactions) { // in the array list Transactions, go through each transactions object one at a time.
-            System.out.printf("%s | %s | %s | $%.2f%n", transactions.getFormattedDateTime(),
-                    transactions.getDescription(),
-                    transactions.getVendor(),
-                    transactions.getAmount());
+        for (int i = transaction.size() - 1; i >= 0; i--) { // in the array list Transactions, go through each transactions object one at a time.
+            Transactions transaction = transactions.get(i);
+
+            System.out.printf("%s | %s | %s | $%.2f%n",
+                    transaction.getFormattedDateTime(),
+                    transaction.getDescription(),
+                    transaction.getVendor(),
+                    transaction.getAmount());
         }
     }
     public void displayDeposits() {
         System.out.println("\n ---- Deposits ----");
 
-        for (Transactions transaction : transactions) {
+        for (Transactions transaction : transaction) {
 
             if (transaction.getAmount() > 0) {
                 System.out.printf("%s %s %s $%.2f%n",
@@ -96,7 +99,7 @@ public class Ledger {
     public void displayPayments() {
         System.out.println("\n---- Payments ----");
 
-        for (Transactions transaction : transactions) {
+        for (Transactions transaction : transaction) {
             if (transaction.getAmount() < 0) {
                 System.out.printf("%s %s %s $%.2f%n",
                         transaction.getFormattedDateTime(),
@@ -120,7 +123,7 @@ public class Ledger {
 
         System.out.println("\n ---- Month To Date ----");
 
-        for (Transactions transaction : transactions) {
+        for (Transactions transaction : transaction) {
             LocalDate transactionDate = transaction.getDateTime().toLocalDate();
 
             // is the date on or after the first day and before the current day.
@@ -146,7 +149,7 @@ public class Ledger {
 
         System.out.println("\n--- Previous Month Report ---");
 
-        for (Transactions transaction : transactions) {
+        for (Transactions transaction : transaction) {
 
             LocalDate transactionDate = transaction.getDateTime().toLocalDate();
 //            We're checking to see if the date is after the first day of last month and before last day of last month.
@@ -169,7 +172,7 @@ public class Ledger {
 
         System.out.println("\n--- Yearly Report ---");
 
-        for (Transactions transaction : transactions) {
+        for (Transactions transaction : transaction) {
             LocalDate transactionDate = transaction.getDateTime().toLocalDate();
 //        This is checking from january 1st to the current day. Not whole year.
             if (!transactionDate.isBefore(firstDayOfYear) && !transactionDate.isAfter(today)) {
@@ -193,7 +196,7 @@ public class Ledger {
 
         System.out.println("\n --- Previous Yearly Report ---");
 
-        for (Transactions transaction : transactions) {
+        for (Transactions transaction : transaction) {
 
             LocalDate transactionDate = transaction.getDateTime().toLocalDate();
 
@@ -212,7 +215,7 @@ public class Ledger {
 
         System.out.println("\n--- Vendor Search ---");
 //        Again checking each object within the list
-        for (Transactions transaction : transactions) {
+        for (Transactions transaction : transaction) {
 //            If any vendor contains what the user inputs, it will display those transactions in lowercase.
 //            We're calling to get the vendor and the users input in full lowercase for an easier match
 //            since this is case-sensitive.
@@ -262,7 +265,7 @@ public class Ledger {
                 );
 
                // Transactions transaction1 = new Transactions(description1, vendor1, amount1);
-                this.transactions.add(transaction);
+                this.transaction.add(transaction);
 
                 System.out.println("---------------------------");
 
@@ -274,7 +277,7 @@ public class Ledger {
 
                 System.out.println("---------------------------");
 
-                System.out.println("Transactions loaded: " + transactions.size());
+                System.out.println("Transactions loaded: " + transaction.size());
 
                 System.out.println(line);
             }
