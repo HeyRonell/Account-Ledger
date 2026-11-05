@@ -6,7 +6,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.io.*;
-import java.util.Locale;
 
 public class Ledger {
 
@@ -174,7 +173,7 @@ public class Ledger {
 
         for (Transactions transaction : transaction) {
             LocalDate transactionDate = transaction.getDateTime().toLocalDate();
-//        This is checking from january 1st to the current day. Not whole year.
+//        This is checking from January 1st to the current day. Not whole year.
             if (!transactionDate.isBefore(firstDayOfYear) && !transactionDate.isAfter(today)) {
 
                 System.out.printf("%s | %s | %s | $%.2f%n",
