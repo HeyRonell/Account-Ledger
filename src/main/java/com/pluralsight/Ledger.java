@@ -268,19 +268,19 @@ public class Ledger {
                // Transactions transaction1 = new Transactions(description1, vendor1, amount1);
                 this.transaction.add(transaction);
 
-                System.out.println("|---------------------------|");
-
-                System.out.println("Date: " + date1);
-                System.out.println("Time: " + time1);
-                System.out.println("Description: " + description1);
-                System.out.println("Vendor: " + vendor1);
-                System.out.println("Amount: " + amount1);
-
-                System.out.println("|---------------------------|");
-
-                System.out.println("Transactions loaded: " + this.transaction.size());
-
-                System.out.println(line);
+//                System.out.println("|---------------------------|");
+//
+//                System.out.println("Date: " + date1);
+//                System.out.println("Time: " + time1);
+//                System.out.println("Description: " + description1);
+//                System.out.println("Vendor: " + vendor1);
+//                System.out.println("Amount: " + amount1);
+//
+//                System.out.println("|---------------------------|");
+//
+//                System.out.println("Transactions loaded: " + this.transaction.size());
+//
+//                System.out.println(line);
             }
         } catch (IOException e){
             System.out.println("Is there something here..?");
