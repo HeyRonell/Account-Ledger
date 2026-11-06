@@ -15,7 +15,7 @@ public class MenuScreen {
 //    Our main menu screen display
     public void displayMenu() {
         String choice = "";
-        int count = 0;
+        int count;
         String header = "=";
 
         while (!choice.equalsIgnoreCase("X")) {
@@ -43,9 +43,6 @@ public class MenuScreen {
             }
 
             System.out.println(" ");
-//            System.out.println(header);
-//            System.out.println("Welcome to GameVault!");
-//            System.out.println("========================");
             System.out.println("\n|---------------------|");
             System.out.println("|  P. Make a payment  |");
             System.out.println("|---------------------|");
@@ -132,7 +129,7 @@ public class MenuScreen {
     private void paymentHandle() {
 
         System.out.println("Payments loading...");
-        int count = 0;
+        int count;
         String header = "/";
 
         for (count = 0; count <= 20; count ++) {
