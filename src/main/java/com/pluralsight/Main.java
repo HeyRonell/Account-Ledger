@@ -13,18 +13,18 @@ public class Main {
 
 
 //        Load the csv file here so we don't read it anymore causing dupes.
-       // ledger.readTransactionsFile();
+        ledger.readTransactionsFile();
 
-        System.out.println("Loading please wait..");
+        System.out.println("\nLoading please wait..");
         for (int count = 0; count <= 10; count ++) {
             System.out.print(dot);
             try {
-                Thread.sleep(300);
+                Thread.sleep(150);
             } catch (InterruptedException e) {
                 System.out.println("This is not working");
             }
         }
-
+        System.out.println(" ");
         System.out.println("\nLoad successful!\n");
 
         MenuScreen ui = new MenuScreen(read, ledger); // calling on the scanner and ledger objects as params

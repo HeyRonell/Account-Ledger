@@ -68,7 +68,7 @@ public class Ledger {
     // Displays for Ledger submenu
     public void displayTransactions() {
 
-        System.out.println("Ledger Information");
+        System.out.println("|-------------Ledger Information-------------|");
 //      this will show all the transactions within the csv file.
         for (int i = transaction.size() - 1; i >= 0; i--) { // in the array list Transactions, go through each transactions object one at a time.
             Transactions transaction = this.transaction.get(i);
@@ -81,7 +81,7 @@ public class Ledger {
         }
     }
     public void displayDeposits() {
-        System.out.println("\n ---- Deposits ----");
+        System.out.println("\n |------------------ Deposits ------------------|");
 
         for (Transactions transaction : transaction) {
 
@@ -96,7 +96,7 @@ public class Ledger {
     }
 
     public void displayPayments() {
-        System.out.println("\n---- Payments ----");
+        System.out.println("\n|------------------ Payments ------------------|");
 
         for (Transactions transaction : transaction) {
             if (transaction.getAmount() < 0) {
@@ -120,7 +120,7 @@ public class Ledger {
         LocalDate today = LocalDate.now(); // todays date.
         LocalDate firstDay = today.withDayOfMonth(1); // determines if the day is on or after the first day of the month
 
-        System.out.println("\n ---- Month To Date ----");
+        System.out.println("\n |------------------ Month To Date ------------------|");
 
         for (Transactions transaction : transaction) {
             LocalDate transactionDate = transaction.getDateTime().toLocalDate();
@@ -146,7 +146,7 @@ public class Ledger {
         // this will identify the day pertaining to the month prior to the current.
         LocalDate lastDayOfPreviousMonth = today.withDayOfMonth(1).minusDays(1);
 
-        System.out.println("\n--- Previous Month Report ---");
+        System.out.println("\n|------------------ Previous Month Report ------------------|");
 
         for (Transactions transaction : transaction) {
 
@@ -169,7 +169,7 @@ public class Ledger {
 //        Finding the first day of the current year.
         LocalDate firstDayOfYear = today.withDayOfYear(1);
 
-        System.out.println("\n--- Yearly Report ---");
+        System.out.println("\n|------------------ Yearly Report ------------------|");
 
         for (Transactions transaction : transaction) {
             LocalDate transactionDate = transaction.getDateTime().toLocalDate();
@@ -193,7 +193,7 @@ public class Ledger {
 //        January first of this year - 1 to get December 31st of the previous year.
         LocalDate lastDayOfPreviousYear = today.withDayOfYear(1).minusDays(1);
 
-        System.out.println("\n --- Previous Yearly Report ---");
+        System.out.println("\n |------------------ Previous Yearly Report ------------------|");
 
         for (Transactions transaction : transaction) {
 
@@ -212,7 +212,7 @@ public class Ledger {
 
         boolean found = false; // initializing as false. Will update itself if the search finds a match.
 
-        System.out.println("\n--- Vendor Search ---");
+        System.out.println("\n|------------------ Vendor Search ------------------|");
 //        Again checking each object within the list
         for (Transactions transaction : transaction) {
 //            If any vendor contains what the user inputs, it will display those transactions in lowercase.
@@ -266,7 +266,7 @@ public class Ledger {
                // Transactions transaction1 = new Transactions(description1, vendor1, amount1);
                 this.transaction.add(transaction);
 
-                System.out.println("---------------------------");
+                System.out.println("|---------------------------|");
 
                 System.out.println("Date: " + date1);
                 System.out.println("Time: " + time1);
@@ -274,7 +274,7 @@ public class Ledger {
                 System.out.println("Vendor: " + vendor1);
                 System.out.println("Amount: " + amount1);
 
-                System.out.println("---------------------------");
+                System.out.println("|---------------------------|");
 
                 System.out.println("Transactions loaded: " + this.transaction.size());
 

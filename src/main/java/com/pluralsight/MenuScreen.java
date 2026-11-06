@@ -1,6 +1,5 @@
 package com.pluralsight;
 
-import java.util.Locale;
 import java.util.Scanner;
 
 public class MenuScreen {
@@ -21,11 +20,12 @@ public class MenuScreen {
 
         while (!choice.equalsIgnoreCase("X")) {
 
+            System.out.println(" ");
             for (count = 0; count <= 20; count ++) {
                 System.out.print(header);
 
                 try {
-                    Thread.sleep(150);
+                    Thread.sleep(100);
                 } catch (Exception e) {
                     System.out.println("Recheck line 30..");
                 }
@@ -36,7 +36,7 @@ public class MenuScreen {
                 System.out.print(header);
 
                 try {
-                    Thread.sleep(150);
+                    Thread.sleep(100);
                 } catch (Exception e) {
                     System.out.println("Recheck line 30..");
                 }
@@ -90,9 +90,9 @@ public class MenuScreen {
 
 //      Methods to handle deposits/payments from the user.
     private void depositHandle() {
-        System.out.println("Launching Deposits..");
+        System.out.println("Launching Deposits..\n");
         int count;
-        String dollar = "$";
+        String dollar = "|";
 
         for (count = 0; count <= 20; count++) {
             System.out.print(dollar);
@@ -107,17 +107,7 @@ public class MenuScreen {
                 System.out.println("System error. Please check line 97..");
             }
         }
-//        System.out.println("\nmoney long money long..");
-//
-//        for (count = 0; count <= 20; count++) {
-//            System.out.print(dollar);
-//
-//            try {
-//                Thread.sleep(150);
-//            } catch (Exception e) {
-//                System.out.println("System error. Please check line 97..");
-//            }
-//        }
+
         System.out.println("\nDeposit loaded successfully!");
 
         System.out.println("\nWhat did the consumer purchase?");
@@ -140,7 +130,23 @@ public class MenuScreen {
 
 //    Handling user inputs for payments
     private void paymentHandle() {
-        System.out.println("Write the description for what we purchased: ");
+
+        System.out.println("Payments loading...");
+        int count = 0;
+        String header = "/";
+
+        for (count = 0; count <= 20; count ++) {
+            System.out.print(header);
+
+            try {
+                Thread.sleep(100);
+            } catch (Exception e) {
+                System.out.println("Error doing this here.");
+            }
+
+        }
+
+        System.out.println("\nWrite the description for what we purchased: ");
         String description = read.nextLine();
 
         System.out.println("Which vendor did we purchase this product from?");
@@ -162,7 +168,7 @@ public class MenuScreen {
         String choice = "";
 
         while (!choice.equalsIgnoreCase("H")) {
-            System.out.println("\n--- Ledger Menu ---");
+            System.out.println("\n|---- Ledger Menu ----|");
             System.out.println("A. All transactions");
             System.out.println("D. Deposits");
             System.out.println("P. Payments");
@@ -188,7 +194,7 @@ public class MenuScreen {
         String choice = "";
 
         while (!choice.equalsIgnoreCase("0")) {
-            System.out.println("\n --- Reports --- ");
+            System.out.println("\n |---- Reports ----| ");
             System.out.println("1. Month to Date");
             System.out.println("2. Previous Month");
             System.out.println("3. Year to Date");
