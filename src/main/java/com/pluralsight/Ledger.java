@@ -112,7 +112,9 @@ public class Ledger {
     public void displayBalance() {
         double balance = calculateBalance();
 
-        System.out.printf("Current balance: $%.2f%n", balance);
+        System.out.println("\n========================================");
+        System.out.printf("GameVault's current balance is: $%.2f%n", balance);
+        System.out.println("========================================");
     }
 
 //    Displays for reports
