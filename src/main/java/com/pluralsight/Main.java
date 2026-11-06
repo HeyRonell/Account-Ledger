@@ -13,7 +13,7 @@ public class Main {
 
 
 //        Load the csv file here so we don't read it anymore causing dupes.
-        ledger.readTransactionsFile();
+//        ledger.readTransactionsFile();
 
         System.out.println("\nLoading please wait..");
         for (int count = 0; count <= 10; count ++) {

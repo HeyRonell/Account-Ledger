@@ -12,7 +12,7 @@ public class Ledger {
     private ArrayList<Transactions> transaction = new ArrayList<>(); // creating this to handle transaction history
 
 //    This is so the system still remembers all the deposits made.
-    private double totalDepositAmount = 0;
+    private double totalDepositAmount;
     private String inputFile = "src/main/resources/transactions.csv";
 
     public void addDeposit(String description, String vendor, double amount) { // adds to the array list if the csv file saves correctly.
